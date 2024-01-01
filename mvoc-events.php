@@ -31,7 +31,7 @@ function mvoc_event_tag_icons($event_id, $align='right') {
                     break;
                 case 'trailo': 
                     $inner_text = '<i class="fa-solid fa-wheelchair-move"></i>';
-                    $hint_text = 'Event contains TrailO, possibly only as an optional component of a mainly foot-O event';
+                    $hint_text = 'Event contains Trail-O, possibly only as an optional component of a mainly Foot-O event';
                     break;
                 case 'major': 
                     $inner_text = '<i class="fa-solid fa-star"></i>';

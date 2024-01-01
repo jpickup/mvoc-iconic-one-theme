@@ -175,21 +175,22 @@ $website_title = tribe_events_get_event_website_title();
 		?>
 
 		<?php
-		tribe_meta_event_archive_tags(
-			/* Translators: %s: Event (singular) */
-			sprintf(
-				esc_html__( '%s Tags:', 'the-events-calendar' ),
-				tribe_get_event_label_singular()
-			),
-			', ',
-			true
-		);
-
+        /* switch this off and replace with the icons */
+		// tribe_meta_event_archive_tags(
+		// 	/* Translators: %s: Event (singular) */
+		// 	sprintf(
+		// 		esc_html__( '%s Tags:', 'the-events-calendar' ),
+		// 		tribe_get_event_label_singular()
+		// 	),
+		// 	', ',
+		// 	true
+		// );
         /* Tag icons */
         require_once get_stylesheet_directory() . '/mvoc-events.php';
         $icons = mvoc_event_tag_icons($event->ID, 'left');
         if ($icons) {
-            echo '<dd class="tribe-events-event-cost">' . $icons . '</dd>';
+            echo '<dt class="tribe-event-tags-label">Event Tags:</dt>';
+            echo '<dd class="tribe-event-tags">' . $icons . '</dd>';
         }
         ?>
 
