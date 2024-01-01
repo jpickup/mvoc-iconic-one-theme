@@ -7,3 +7,11 @@ function theme_enqueue_styles() {
         array('parent-style')
     );
 }
+
+add_action('wp_head', 'mvoc_child_wp_head');
+function mvoc_child_wp_head(){
+    //Close PHP tags 
+    ?>
+    <script src="https://kit.fontawesome.com/47b25671dd.js" crossorigin="anonymous"></script>
+    <?php //Open PHP tags
+}

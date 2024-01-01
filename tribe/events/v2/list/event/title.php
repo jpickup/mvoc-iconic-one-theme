@@ -29,12 +29,10 @@
 		?>
 	</a>
 	<?php
-		$tribe_ecp = Tribe__Events__Main::instance();
-		$posttags = get_the_tags($event->ID);
-		if ($posttags) {
-			foreach($posttags as $tag) {
-				echo '<div class="mvoc-event-tag mvoc-event-tag-' . strtolower($tag->name) . '"></div>'; 
-			}
+		require_once get_stylesheet_directory() . '/mvoc-events.php';
+		$icons = mvoc_event_tag_icons($event->ID);
+		if ($icons) {
+			echo $icons;
 		}
 	?>
 </h3>

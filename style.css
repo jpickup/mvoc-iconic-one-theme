@@ -16,47 +16,28 @@ div.mvoc-event-list-distance {
     float: right;
 }
 
-div.mvoc-event-tag {
+div.mvoc-event-tag-left {
+    float: left;
+    width:35px; 
+    height:35px; 
+    margin:1px; 
+    padding:1px; 
+}
+
+div.mvoc-event-tag-right {
     float: right;
-    width:25px; /*width of your image*/
-    height:25px; /*height of your image*/
-    margin:0; /* If you want no margin */
-    padding:0; /*if your want to padding */    
-}
-
-div.mvoc-event-tag-mvoc {
-    background-image:url('img/mvoc.jpg');
-    alt: "Event of particular importance to Mole Valley members, usually either organised by Mole Valley or featuring some form of inter-club competition";
-}
-
-div.mvoc-event-tag-ranking {
-    background-image:url('img/ranking.png');
-}
-
-div.mvoc-event-tag-night {
-    background-image:url('img/night.png');
-}
-
-div.mvoc-event-tag-trailo {
-    background-image:url('img/TrailO.png');
-}
-
-div.mvoc-event-tag-national {
-    background-image:url('img/national.gif');
-}
-
-div.mvoc-event-tag-overseas {
-    background-image:url('img/overseas.gif');
+    width:35px; 
+    height:35px; 
+    margin:1px; 
+    padding:1px; 
 }
 
 div.mvoc-event-category {
     float: left;
-    width:25px; /*width of your image*/
-    height:25px; /*height of your image*/
-    margin:0; /* If you want no margin */
-    padding:0; /*if your want to padding */    
+    margin:1px; 
+    padding:1px;
 }
 
-div.mvoc-event-category-local {
-    background-image:url('img/local.png');
+.site-wordpress {
+    visibility: hidden;
 }

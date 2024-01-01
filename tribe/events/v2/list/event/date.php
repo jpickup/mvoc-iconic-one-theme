@@ -35,8 +35,6 @@ $event_date_attr = $event->dates->start->format( Dates::DBDATEFORMAT );
 			if ($categories) {
 				foreach($categories as $category) {
 					echo '<b>' . ($category->name) . '</b>';
-					// Could use a glyph instead
-					//echo '<div class="mvoc-event-category mvoc-event-category-' . strtolower($category->name) . '"></div>'; 
 				}
 			}
 
