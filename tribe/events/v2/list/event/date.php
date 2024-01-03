@@ -38,7 +38,7 @@ $event_date_attr = $event->dates->start->format( Dates::DBDATEFORMAT );
 				}
 			}
 
-			$m = get_post_meta( $event->ID, "_distance", true);
+			$m = get_post_meta( $event->ID, "_mvoc_distance", true);
 			if ($m) {
 				echo ' (' . $m . ' miles)';
 			}
