@@ -4,39 +4,13 @@ Theme URI: http://themonic.com/iconic-one/child
 Author: Themonic
 Author URI: http://themonic.com/
 Description: MVOC child theme based on Iconic One
-Version: 1.0.0
+Version: 1.0.1
 Template: iconic-one
 Text Domain: mvoc-iconic-one
 */
 /*
 https://developer.wordpress.org/themes/advanced-topics/child-themes/
 */
-
-div.mvoc-event-list-distance {
-    float: right;
-}
-
-div.mvoc-event-tag-left {
-    float: left;
-    width:35px; 
-    height:35px; 
-    margin:1px; 
-    padding:1px; 
-}
-
-div.mvoc-event-tag-right {
-    float: right;
-    width:35px; 
-    height:35px; 
-    margin:1px; 
-    padding:1px; 
-}
-
-div.mvoc-event-category {
-    float: left;
-    margin:1px; 
-    padding:1px;
-}
 
 .site-wordpress {
     visibility: hidden;
