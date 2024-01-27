@@ -25,35 +25,35 @@ function mvoc_event_tag_icons($event_id, $align='right') {
                     $hint_text = 'Event of particular importance to Mole Valley members, usually either organised by Mole Valley or featuring some form of inter-club competition';
                     break;
                 case 'night': 
-                    $inner_text = '<i class="fa-solid fa-moon"></i>';
+                    $inner_text = '<i class="fa-solid fa-moon" style="color: #9d9e9d;"></i>';
                     $hint_text = 'Night event';
                     break;
                 case 'ranking': 
-                    $inner_text = '<i class="fa-solid fa-ranking-star"></i>';
+                    $inner_text = '<i class="fa-solid fa-ranking-star" style="color: #e67512;"></i>';
                     $hint_text = 'British Orienteering National Ranking event';
                     break;
                 case 'national': 
-                    $inner_text = '<i class="fa-solid fa-flag"></i>';
+                    $inner_text = '<i class="fa-solid fa-flag" style="color: #7f1796;"></i>';
                     $hint_text = 'Event graded by British Orienteering as ¨National¨ (if not in the UK Orienteering League)';
                     break;
                 case 'trailo': 
-                    $inner_text = '<i class="fa-solid fa-wheelchair-move"></i>';
+                    $inner_text = '<i class="fa-solid fa-wheelchair-move"  style="color: #17ada8;"></i>';
                     $hint_text = 'Event contains Trail-O, possibly only as an optional component of a mainly Foot-O event';
                     break;
                 case 'major': 
-                    $inner_text = '<i class="fa-solid fa-star"></i>';
+                    $inner_text = '<i class="fa-solid fa-star" style="color: #dbaf0f;"></i>';
                     $hint_text = 'National Championship, UK Orienteering League event, or other event graded by British Orienteering as ¨Major¨';
                     break;
                 case 'online': 
-                    $inner_text = '<i class="fa-solid fa-laptop"></i>';
+                    $inner_text = '<i class="fa-solid fa-laptop" style="color: #2e9617;"></i>';
                     $hint_text = 'On-line entries have opened';
                     break;
                 case 'preentry': 
-                    $inner_text = '<i class="fa-solid fa-envelope-open-text"></i>';
+                    $inner_text = '<i class="fa-solid fa-envelope-open-text" style="color: #26b017;"></i>';
                     $hint_text = 'On-line pre-entry opening, closing or price change date';
                     break;											
                 case 'overseas': 
-                    $inner_text = '<i class="fa-solid fa-plane"></i>';
+                    $inner_text = '<i class="fa-solid fa-plane" style="color: #ba0a04;"></i>';
                     $hint_text = 'Overseas event';
                     break;
                 default:

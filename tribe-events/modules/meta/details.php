@@ -273,7 +273,7 @@ $website_title = tribe_events_get_event_website_title();
         // );
         /* Tag icons */
         require_once get_stylesheet_directory() . '/mvoc-events.php';
-        $icons = mvoc_event_tag_icons($event->ID, 'left');
+        $icons = mvoc_event_tag_icons($event_id, 'left');
         if ($icons) {
             echo '<dt class="tribe-event-tags-label">Event Tags:</dt>';
             echo '<dd class="tribe-event-tags">' . $icons . '</dd>';

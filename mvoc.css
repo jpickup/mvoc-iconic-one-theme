@@ -1,0 +1,38 @@
+.tribe-event-tags {
+    float: left;
+    width: 100%;
+}
+
+/* .tribe-events-meta-group {
+    flex: 1 0 185px;
+} */
+
+.tribe-events-meta-group {
+    flex: 1 0 240px
+}
+
+div.mvoc-event-list-distance {
+    float: right;
+}
+
+div.mvoc-event-tag-left {
+    float: left;
+    width:35px; 
+    height:35px; 
+    margin:1px; 
+    padding:1px; 
+}
+
+div.mvoc-event-tag-right {
+    float: right;
+    width:35px; 
+    height:35px; 
+    margin:1px; 
+    padding:1px; 
+}
+
+div.mvoc-event-category {
+    float: left;
+    margin:1px; 
+    padding:1px;
+}
