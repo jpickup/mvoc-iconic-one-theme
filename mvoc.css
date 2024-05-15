@@ -36,3 +36,34 @@ div.mvoc-event-category {
     margin:1px; 
     padding:1px;
 }
+
+/* Unconstrians the width of the metadata in the event details pages, without this details wrapped */
+.tribe-events-meta-group {
+	width: unset;
+}
+
+/* Used to get the header of Recent Results to match the styling of Upcoming Events */
+h2.tribe-widget {
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "Ubuntu", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
+
+/* Failed attempts at improving table formatting */
+.vertical-align-middle {
+	vertical-align: middle;
+}
+
+.compact {
+	border: 0px none;
+	padding: 0px 0px;
+}
+
+.no-padding {
+	padding: 0px 0px;
+}
+
+.no-border {
+	border: 0px none;
+}

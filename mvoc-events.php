@@ -21,7 +21,7 @@ function mvoc_event_tag_icons($event_id, $align='right') {
         foreach($posttags as $tag) {
             switch (strtolower($tag->name)) {
                 case 'mvoc': 
-                    $inner_text = '<i class="fa-brands fa-swift fa-flip-horizontal" style="color: #3773ff;"></i>';
+                    $inner_text = '<i class="fa-brands fa-swift fa-flip-horizontal" style="color: #16A1E7;"></i>';
                     $hint_text = 'Event of particular importance to Mole Valley members, usually either organised by Mole Valley or featuring some form of inter-club competition';
                     break;
                 case 'night': 
@@ -55,6 +55,10 @@ function mvoc_event_tag_icons($event_id, $align='right') {
                 case 'overseas': 
                     $inner_text = '<i class="fa-solid fa-plane" style="color: #ba0a04;"></i>';
                     $hint_text = 'Overseas event';
+                    break;
+                case 'summer series': 
+                    $inner_text = '<i class="fa-solid fa-sun style="color: #ffc800;"></i>';
+                    $hint_text = 'Summer Series';
                     break;
                 default:
                     $inner_text = $tag->name;

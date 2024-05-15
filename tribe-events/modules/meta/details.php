@@ -226,21 +226,24 @@ $website_title = tribe_events_get_event_website_title();
         // }
         
         $streetmapurl = streetmap_url($latitude, $longitude);
-        if ($streetmapurl) {
-            echo '<dt class="tribe-events-event-cost-label">StreetMap:</dt>';
-            echo '<dd class="tribe-events-event-cost"><a href="' . $streetmapurl . '">' . $streetmapurl . '</a></dd>';
-        }
-
         $gmapurl = gmap_url($latitude, $longitude);
-        if ($gmapurl) {
-            echo '<dt class="tribe-events-event-cost-label">Google Maps:</dt>';
-            echo '<dd class="tribe-events-event-cost"><a href="' . $gmapurl . '">' . $gmapurl . '</a></dd>';
-        }
-
         $w3w = get_post_meta($event_id, "_mvoc_w3w", true);
-        if ($w3w) {
-            echo '<dt class="tribe-events-event-cost-label">W3W:</dt>';
-            echo '<dd class="tribe-events-event-cost"><a href="' . w3w_url($w3w) . '">' . $w3w . '</a></dd>';
+        
+        if ($streetmapurl || $gmapurl || $w3w) {
+            echo '<dt class="tribe-events-event-cost-label">Location:</dt>';
+            echo '<dd class="tribe-events-event-cost">';
+            if ($streetmapurl) {
+                echo '<a href="' . $streetmapurl . '"><i class="fa-solid fa-map" title="StreetMap"></i></a>&nbsp;';
+            }
+
+            if ($gmapurl) {
+                echo '<a href="' . $gmapurl . '"><i class="fa-solid fa-map-location-dot" title="Google Maps"></i></a>&nbsp;';
+            }
+
+            if ($w3w) {
+                echo '<a href="' . w3w_url($w3w) . '"><i class="fa-solid fa-map-pin" title="What3Words"></i></a>&nbsp;';
+            }
+            echo '</dd>';
         }
         ?>
 
