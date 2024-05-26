@@ -67,3 +67,7 @@ h2.tribe-widget {
 .no-border {
 	border: 0px none;
 }
+
+.event-icon {
+    font-size: x-large;
+}

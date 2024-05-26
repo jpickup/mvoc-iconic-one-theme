@@ -201,12 +201,6 @@ $website_title = tribe_events_get_event_website_title();
             echo '<dd class="tribe-events-event-cost">' . $distance . ' miles </dd>';
         }
 
-        $bofid = get_post_meta($event_id, MVOC_BOF_ID_KEY, true);
-        if ($bofid) {
-            echo '<dt class="tribe-events-event-cost-label">BOF Event ID:</dt>';
-            echo '<dd class="tribe-events-event-cost"><a href="' . bof_url($bofid) . '">' . $bofid . '</a></dd>';
-        }
-
         $onlineentryurl = get_post_meta($event_id, MVOC_ONLINE_ENTRY_KEY, true);
         if ($onlineentryurl) {
             echo '<dt class="tribe-events-event-cost-label">Online Entry:</dt>';
@@ -224,27 +218,7 @@ $website_title = tribe_events_get_event_website_title();
         // 	echo '<dt class="tribe-events-event-cost-label">Longitude:</dt>';
         //     echo '<dd class="tribe-events-event-cost">' . $longitude . '</dd>';
         // }
-        
-        $streetmapurl = streetmap_url($latitude, $longitude);
-        $gmapurl = gmap_url($latitude, $longitude);
-        $w3w = get_post_meta($event_id, "_mvoc_w3w", true);
-        
-        if ($streetmapurl || $gmapurl || $w3w) {
-            echo '<dt class="tribe-events-event-cost-label">Location:</dt>';
-            echo '<dd class="tribe-events-event-cost">';
-            if ($streetmapurl) {
-                echo '<a href="' . $streetmapurl . '"><i class="fa-solid fa-map" title="StreetMap"></i></a>&nbsp;';
-            }
-
-            if ($gmapurl) {
-                echo '<a href="' . $gmapurl . '"><i class="fa-solid fa-map-location-dot" title="Google Maps"></i></a>&nbsp;';
-            }
-
-            if ($w3w) {
-                echo '<a href="' . w3w_url($w3w) . '"><i class="fa-solid fa-map-pin" title="What3Words"></i></a>&nbsp;';
-            }
-            echo '</dd>';
-        }
+       
         ?>
 
         <?php
@@ -278,8 +252,40 @@ $website_title = tribe_events_get_event_website_title();
         require_once get_stylesheet_directory() . '/mvoc-events.php';
         $icons = mvoc_event_tag_icons($event_id, 'left');
         if ($icons) {
-            echo '<dt class="tribe-event-tags-label">Event Tags:</dt>';
-            echo '<dd class="tribe-event-tags">' . $icons . '</dd>';
+            echo '<dt class="tribe-event-tags-label">Tags:</dt>';
+            echo '<dd class="tribe-event-tags event-icon">' . $icons . '</dd>';
+        }
+        ?>
+
+        <?php
+        $bofid = get_post_meta($event_id, MVOC_BOF_ID_KEY, true);
+        if ($bofid) {
+            //echo '<dt class="tribe-events-event-cost-label">BOF Event ID:</dt>';
+            //echo '<dd class="tribe-events-event-cost"><a href="' . bof_url($bofid) . '">' . $bofid . '</a></dd>';
+            echo '<dt class="tribe-events-event-cost-label"></dt>';
+            echo '<dd class="tribe-events-event-cost"><a href="' . bof_url($bofid) . '"><i class="fa-regular fa-compass event-icon" title="BOF"></i></a></dd>';          
+        }
+
+        $streetmapurl = streetmap_url($latitude, $longitude);
+        $gmapurl = gmap_url($latitude, $longitude);
+        $w3w = get_post_meta($event_id, "_mvoc_w3w", true);
+        
+        if ($streetmapurl || $gmapurl || $w3w) {
+            //echo '<dt class="tribe-events-event-cost-label">Location:</dt>';
+            echo '<dt class="tribe-events-event-cost-label"></dt>';
+            echo '<dd class="tribe-events-event-cost">';
+            if ($streetmapurl) {
+                echo '<a href="' . $streetmapurl . '"><i class="fa-solid fa-map event-icon" title="StreetMap"></i></a>&nbsp;';
+            }
+
+            if ($gmapurl) {
+                echo '<a href="' . $gmapurl . '"><i class="fa-solid fa-map-location-dot event-icon" title="Google Maps"></i></a>&nbsp;';
+            }
+
+            if ($w3w) {
+                echo '<a href="' . w3w_url($w3w) . '"><i class="fa-solid fa-map-pin event-icon" title="What3Words"></i></a>&nbsp;';
+            }
+            echo '</dd>';
         }
         ?>
 
