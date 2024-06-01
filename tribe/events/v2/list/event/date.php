@@ -30,6 +30,7 @@ $event_date_attr = $event->dates->start->format( Dates::DBDATEFORMAT );
 	</time>
 	<div class="mvoc-event-list-distance">
 		<?php
+			require_once get_stylesheet_directory() . '/mvoc-events.php';
 			$tribe_ecp = Tribe__Events__Main::instance();
 			$categories = get_the_terms( $event->ID, $tribe_ecp->get_event_taxonomy());
 			if ($categories) {
@@ -38,9 +39,16 @@ $event_date_attr = $event->dates->start->format( Dates::DBDATEFORMAT );
 				}
 			}
 
-			$m = get_post_meta( $event->ID, "_mvoc_distance", true);
-			if ($m) {
-				echo ' (' . $m . ' miles)';
+			$distance = get_post_meta( $event->ID, "_mvoc_distance", true);
+			if ($distance) {
+				echo ' (' . $distance . ' miles)';
+			} else {
+				$latitude = get_post_meta($event->ID, "_mvoc_latitude", true);
+				$longitude = get_post_meta($event->ID, "_mvoc_longitude", true);
+				$calc_distance = event_distance($latitude, $longitude);
+				if ($calc_distance) {
+					echo ' (' . $calc_distance . ' miles)';
+				}
 			}
 		?>
 	</div>

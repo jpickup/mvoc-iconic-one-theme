@@ -57,7 +57,7 @@ function mvoc_event_tag_icons($event_id, $align='right') {
                     $hint_text = 'Overseas event';
                     break;
                 case 'summer series': 
-                    $inner_text = '<i class="fa-solid fa-sun style="color: #ffc800;"></i>';
+                    $inner_text = '<i class="fa-solid fa-sun" style="color: #ffc800;"></i>';
                     $hint_text = 'Summer Series';
                     break;
                 default:
@@ -113,4 +113,34 @@ function bof_url($bof_id) {
 function w3w_url($w3w) {
     return 'https://w3w.co/' . $w3w;
 }
-?>
+
+
+// Earth radius in metres for haversine calculation  
+const DMMEANRADIUS = 6371000.0;
+// LEATHERHEAD: TQ 16368 56325 = 51.294173	-0.33242477
+const ORIGIN_LAT = 51.294173;
+const ORIGIN_LONG = -0.33242477;
+function haversine_dist($lat1, $long1, $lat2, $long2) {
+    $hs1 = sin(($lat1-$lat2)/2.0);  
+    $hs2 = sin(($long1-$long2)/2.0);  
+    return 2.0*DMMEANRADIUS*asin(sqrt($hs1*$hs1+cos($lat1)*cos($lat2)*$hs2*$hs2));  
+}
+
+function event_distance($latitude, $longitude) {
+    if (is_numeric($latitude) && is_numeric($longitude)) {
+        $lat1 = deg_to_rad($latitude);
+        $long1 = deg_to_rad($longitude);
+        $lat2 = deg_to_rad(ORIGIN_LAT);
+        $long2 = deg_to_rad(ORIGIN_LONG);
+        $dist_metres = haversine_dist($lat1, $long1, $lat2, $long2);
+        return round($dist_metres / 1609);
+    }
+    else {
+        return null;
+    }
+}
+
+function deg_to_rad($deg) {
+    return $deg / 360.0 * 2 * M_PI;
+}
+

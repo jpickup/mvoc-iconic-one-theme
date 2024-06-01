@@ -196,9 +196,20 @@ $website_title = tribe_events_get_event_website_title();
 
         // MVOC Custom fields
         $distance = get_post_meta($event_id, MVOC_DISTANCE_KEY, true);
+        $latitude = get_post_meta($event_id, MVOC_LATITUDE_KEY, true);
+        $longitude = get_post_meta($event_id, MVOC_LONGITUDE_KEY, true);
         if ($distance) {
             echo '<dt class="tribe-events-event-cost-label">Distance:</dt>';
             echo '<dd class="tribe-events-event-cost">' . $distance . ' miles </dd>';
+        } else {
+            if (is_numeric($latitude) && is_numeric($longitude)) {
+                $calc_distance = event_distance($latitude, $longitude);
+                echo '<dt class="tribe-events-event-cost-label">Distance:</dt>';
+                echo '<dd class="tribe-events-event-cost">' . $calc_distance . ' miles </dd>';
+            } else {
+                echo '<dt class="tribe-events-event-cost-label">Distance:</dt>';
+                echo '<dd class="tribe-events-event-cost">' . 'No distance' . ' miles </dd>';
+            }
         }
 
         $onlineentryurl = get_post_meta($event_id, MVOC_ONLINE_ENTRY_KEY, true);
@@ -207,8 +218,6 @@ $website_title = tribe_events_get_event_website_title();
             echo '<dd class="tribe-events-event-cost"><a href="' . $onlineentryurl . '">' . $onlineentryurl . '</a></dd>';
         }
 
-        $latitude = get_post_meta($event_id, MVOC_LATITUDE_KEY, true);
-        $longitude = get_post_meta($event_id, MVOC_LONGITUDE_KEY, true);
 
         // if ($latitude) {
         // 	echo '<dt class="tribe-events-event-cost-label">Latitude:</dt>';
@@ -263,7 +272,7 @@ $website_title = tribe_events_get_event_website_title();
             //echo '<dt class="tribe-events-event-cost-label">BOF Event ID:</dt>';
             //echo '<dd class="tribe-events-event-cost"><a href="' . bof_url($bofid) . '">' . $bofid . '</a></dd>';
             echo '<dt class="tribe-events-event-cost-label"></dt>';
-            echo '<dd class="tribe-events-event-cost"><a href="' . bof_url($bofid) . '"><i class="fa-regular fa-compass event-icon" title="BOF"></i></a></dd>';          
+            echo '<dd class="tribe-events-event-cost"><a href="' . bof_url($bofid) . '"><i class="fa-regular fa-compass event-icon" title="Details at BOF"></i>BOF</a></dd>';          
         }
 
         $streetmapurl = streetmap_url($latitude, $longitude);
