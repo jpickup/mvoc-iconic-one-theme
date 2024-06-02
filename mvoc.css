@@ -37,6 +37,11 @@ div.mvoc-event-category {
     padding:1px;
 }
 
+/* Increase size of the event tags */
+.event-icon {
+    font-size: x-large;
+}
+
 /* Unconstrians the width of the metadata in the event details pages, without this details wrapped */
 .tribe-events-meta-group {
 	width: unset;
@@ -68,6 +73,23 @@ h2.tribe-widget {
 	border: 0px none;
 }
 
-.event-icon {
-    font-size: x-large;
+/* Table styling for results page */
+.entry-content table {
+	font-size: 14px;
+}
+
+.entry-content td {
+    border: 0px none;
+}
+
+.entry-content th {
+    border: 0px none;
+}
+
+.odd td {
+    background-color: rgb(255, 255, 255)
+}
+
+.even td {
+    background-color: rgb(240, 240, 240)
 }

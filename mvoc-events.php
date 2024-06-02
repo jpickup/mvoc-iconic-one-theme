@@ -58,7 +58,7 @@ function mvoc_event_tag_icons($event_id, $align='right') {
                     break;
                 case 'summer series': 
                     $inner_text = '<i class="fa-solid fa-sun" style="color: #ffc800;"></i>';
-                    $hint_text = 'Summer Series';
+                    $hint_text = 'Part of the MV Summer Series';
                     break;
                 default:
                     $inner_text = $tag->name;
