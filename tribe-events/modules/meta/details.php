@@ -215,7 +215,7 @@ $website_title = tribe_events_get_event_website_title();
         $onlineentryurl = get_post_meta($event_id, MVOC_ONLINE_ENTRY_KEY, true);
         if ($onlineentryurl) {
             echo '<dt class="tribe-events-event-cost-label">Online Entry:</dt>';
-            echo '<dd class="tribe-events-event-cost"><a href="' . $onlineentryurl . '">' . $onlineentryurl . '</a></dd>';
+            echo '<dd class="tribe-events-event-cost"><a target="_blank" rel="noopener" href="' . $onlineentryurl . '">' . $onlineentryurl . '</a></dd>';
         }
 
 
@@ -272,7 +272,7 @@ $website_title = tribe_events_get_event_website_title();
             //echo '<dt class="tribe-events-event-cost-label">BOF Event ID:</dt>';
             //echo '<dd class="tribe-events-event-cost"><a href="' . bof_url($bofid) . '">' . $bofid . '</a></dd>';
             echo '<dt class="tribe-events-event-cost-label"></dt>';
-            echo '<dd class="tribe-events-event-cost"><a href="' . bof_url($bofid) . '"><i class="fa-regular fa-compass event-icon" title="Details at BOF"></i>BOF</a></dd>';          
+            echo '<dd class="tribe-events-event-cost"><a target="_blank" rel="noopener" href="' . bof_url($bofid) . '"><i class="fa-regular fa-compass event-icon" title="Details at BOF"></i>BOF</a></dd>';          
         }
 
         $streetmapurl = streetmap_url($latitude, $longitude);
@@ -284,23 +284,31 @@ $website_title = tribe_events_get_event_website_title();
             echo '<dt class="tribe-events-event-cost-label"></dt>';
             echo '<dd class="tribe-events-event-cost">';
             if ($streetmapurl) {
-                echo '<a href="' . $streetmapurl . '"><i class="fa-solid fa-map event-icon" title="StreetMap"></i></a>&nbsp;';
+                echo '<a target="_blank" rel="noopener" href="' . $streetmapurl . '"><i class="fa-solid fa-map event-icon" title="StreetMap"></i></a>&nbsp;';
             }
 
             if ($gmapurl) {
-                echo '<a href="' . $gmapurl . '"><i class="fa-solid fa-map-location-dot event-icon" title="Google Maps"></i></a>&nbsp;';
+                echo '<a target="_blank" rel="noopener" href="' . $gmapurl . '"><i class="fa-solid fa-map-location-dot event-icon" title="Google Maps"></i></a>&nbsp;';
             }
 
             if ($w3w) {
-                echo '<a href="' . w3w_url($w3w) . '"><i class="fa-solid fa-map-pin event-icon" title="What3Words"></i></a>&nbsp;';
+                echo '<a target="_blank" rel="noopener" href="' . w3w_url($w3w) . '"><i class="fa-solid fa-map-pin event-icon" title="What3Words"></i></a>&nbsp;';
             }
             echo '</dd>';
         }
+
+        // Ensure link to external site opens in a new tab/window
+        // replace:
+        //   target="_self" rel="external" 
+        // with: 
+        //   target="_blank" rel="noopener"
+        $website = str_replace('target="_self" rel="external"','target="_blank" rel="noopener"', $website)
         ?>
 
         <?php
         // Event Website
-        if (!empty($website)): ?>
+        if (!empty($website)): 
+            ?>
             <?php if (!empty($website_title)): ?>
                 <dt class="tribe-events-event-url-label">
                     <?php echo esc_html($website_title); ?>
