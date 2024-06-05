@@ -302,7 +302,9 @@ $website_title = tribe_events_get_event_website_title();
         //   target="_self" rel="external" 
         // with: 
         //   target="_blank" rel="noopener"
-        $website = str_replace('target="_self" rel="external"','target="_blank" rel="noopener"', $website)
+        if (!empty($website)) { 
+            $website = str_replace('target="_self" rel="external"','target="_blank" rel="noopener"', $website);
+        }
         ?>
 
         <?php
