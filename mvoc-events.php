@@ -107,7 +107,9 @@ function streetmap_url($latitude, $longitude) {
 }
 
 function bof_url($bof_id) {
-    return 'https://www.britishorienteering.org.uk/index.php?pg=event&event=' . $bof_id;
+    // OLD BOF site
+    //return 'https://www.britishorienteering.org.uk/index.php?pg=event&event=' . $bof_id;
+    return 'https://www.britishorienteering.org.uk/event?event=' . $bof_id;
 }
 
 function w3w_url($w3w) {
