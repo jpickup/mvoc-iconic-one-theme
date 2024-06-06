@@ -45,7 +45,12 @@ function mvoc_event_tag_icons($event_id, $align='right') {
                     $hint_text = 'National Championship, UK Orienteering League event, or other event graded by British Orienteering as ¨Major¨';
                     break;
                 case 'online': 
-                    $inner_text = '<i class="fa-solid fa-laptop" style="color: #2e9617;"></i>';
+                    $onlineentryurl = get_post_meta($event_id, MVOC_ONLINE_ENTRY_KEY, true);
+                    if ($onlineentryurl) {
+                        $inner_text = '<a target="_blank" rel="noopener" href="' . $onlineentryurl . '"><i class="fa-solid fa-laptop" style="color: #2e9617;"></i></a>';
+                    } else {
+                        $inner_text = '<i class="fa-solid fa-laptop" style="color: #2e9617;"></i>';
+                    }
                     $hint_text = 'On-line entries have opened';
                     break;
                 case 'preentry': 
@@ -65,6 +70,17 @@ function mvoc_event_tag_icons($event_id, $align='right') {
                     $hint_text = '';
                     break;
             }
+            $result = $result . '<div class="'. $div_class. '" title="' . $hint_text .'">' . $inner_text . '</div>'; 
+        }
+    }
+
+    $latitude = get_post_meta($event_id, MVOC_LATITUDE_KEY, true);
+    $longitude = get_post_meta($event_id, MVOC_LONGITUDE_KEY, true);
+    $gmapurl = gmap_url($latitude, $longitude);
+    if ($gmapurl) {
+        if ($gmapurl) {
+            $inner_text = '<a target="_blank" rel="noopener" href="' . $gmapurl . '"><i class="fa-solid fa-map-location-dot event-icon" style="color: #0080f0;"></i></a>&nbsp;';
+            $hint_text = 'Google Map';
             $result = $result . '<div class="'. $div_class. '" title="' . $hint_text .'">' . $inner_text . '</div>'; 
         }
     }

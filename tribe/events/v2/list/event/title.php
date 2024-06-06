@@ -17,6 +17,7 @@
  */
 ?>
 <h3 class="tribe-events-calendar-list__event-title tribe-common-h6 tribe-common-h4--min-medium">
+	<div>
 	<a
 		href="<?php echo esc_url( $event->permalink ); ?>"
 		title="<?php echo esc_attr( $event->title ); ?>"
@@ -32,7 +33,8 @@
 		require_once get_stylesheet_directory() . '/mvoc-events.php';
 		$icons = mvoc_event_tag_icons($event->ID);
 		if ($icons) {
-			echo $icons;
+			echo '<div class="event-icon">' . $icons . '</div>';
 		}
 	?>
+	</div>
 </h3>

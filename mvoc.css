@@ -39,7 +39,7 @@ div.mvoc-event-category {
 
 /* Increase size of the event tags */
 .event-icon {
-    font-size: x-large;
+    font-size: large;
 }
 
 /* Unconstrians the width of the metadata in the event details pages, without this details wrapped */
@@ -53,6 +53,11 @@ h2.tribe-widget {
     font-weight: normal;
     font-family: "Ubuntu", Helvetica, Arial, sans-serif;
     font-weight: 400;
+}
+
+/* Hide the subscribe panel/button */
+.tribe-events-c-subscribe-dropdown__container div {
+    display: none;
 }
 
 /* Failed attempts at improving table formatting */
