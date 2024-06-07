@@ -218,7 +218,6 @@ $website_title = tribe_events_get_event_website_title();
             echo '<dd class="tribe-events-event-cost"><a target="_blank" rel="noopener" href="' . $onlineentryurl . '">' . $onlineentryurl . '</a></dd>';
         }
 
-
         // if ($latitude) {
         // 	echo '<dt class="tribe-events-event-cost-label">Latitude:</dt>';
         //     echo '<dd class="tribe-events-event-cost">' . $latitude . '</dd>';
@@ -229,6 +228,29 @@ $website_title = tribe_events_get_event_website_title();
         // }
        
         ?>
+
+        <?php
+        // Event Website
+
+        // Ensure link to external site opens in a new tab/window
+        // replace:
+        //   target="_self" rel="external" 
+        // with: 
+        //   target="_blank" rel="noopener"
+        if (!empty($website)) { 
+            $website = str_replace('target="_self" rel="external"','target="_blank" rel="noopener"', $website);
+        }
+        if (!empty($website)): 
+            ?>
+            <?php if (!empty($website_title)): ?>
+                <dt class="tribe-events-event-url-label">
+                    <?php echo esc_html($website_title); ?>
+                </dt>
+            <?php endif; ?>
+            <dd class="tribe-events-event-url">
+                <?php echo $website; ?>
+            </dd>
+        <?php endif ?>
 
         <?php
         echo tribe_get_event_categories(
@@ -292,30 +314,7 @@ $website_title = tribe_events_get_event_website_title();
             echo $bof_icon;  
             echo '</dd>';
         }
-
-        // Ensure link to external site opens in a new tab/window
-        // replace:
-        //   target="_self" rel="external" 
-        // with: 
-        //   target="_blank" rel="noopener"
-        if (!empty($website)) { 
-            $website = str_replace('target="_self" rel="external"','target="_blank" rel="noopener"', $website);
-        }
         ?>
-
-        <?php
-        // Event Website
-        if (!empty($website)): 
-            ?>
-            <?php if (!empty($website_title)): ?>
-                <dt class="tribe-events-event-url-label">
-                    <?php echo esc_html($website_title); ?>
-                </dt>
-            <?php endif; ?>
-            <dd class="tribe-events-event-url">
-                <?php echo $website; ?>
-            </dd>
-        <?php endif ?>
 
         <?php do_action('tribe_events_single_meta_details_section_end'); ?>
     </dl>
