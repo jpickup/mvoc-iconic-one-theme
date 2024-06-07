@@ -300,7 +300,7 @@ $website_title = tribe_events_get_event_website_title();
                 'fields' => 'all'
                 );
             $event_categories = wp_get_object_terms( $event_id, array( 'tribe_events_cat' ), $event_cats_args );
-            $bof_icon = '<div class="mvoc-event-tag-left"><a target="_blank" rel="noopener" href="' . bof_url($bofid, $event_categories) . '"><i class="fa-regular fa-compass event-icon" title="Details at BOF" style="color: #D00915;"></i></a></div>';
+            $bof_icon = '<div class="mvoc-event-tag-left"><a target="_blank" rel="noopener" href="' . bof_url($bofid, $event_categories) . '"><i class="fa-regular fa-compass event-icon" title="Details at the British Orienteering website" style="color: #D00915;"></i></a></div>';
         }
 
 
