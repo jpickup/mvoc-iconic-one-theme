@@ -122,9 +122,13 @@ function streetmap_url($latitude, $longitude) {
     }
 }
 
-function bof_url($bof_id) {
-    // OLD BOF site
-    //return 'https://www.britishorienteering.org.uk/index.php?pg=event&event=' . $bof_id;
+function bof_url($bof_id, $categories) {
+    if ($categories) {
+        foreach($categories as $category)
+        if (str_contains('Activity', $category->name)) {
+            return 'https://www.britishorienteering.org.uk/activity?activity=' . $bof_id;
+        }
+    }
     return 'https://www.britishorienteering.org.uk/event?event=' . $bof_id;
 }
 

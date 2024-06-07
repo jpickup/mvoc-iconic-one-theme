@@ -247,53 +247,49 @@ $website_title = tribe_events_get_event_website_title();
         ?>
 
         <?php
-        /* switch this off and replace with the icons */
-        // tribe_meta_event_archive_tags(
-        // 	/* Translators: %s: Event (singular) */
-        // 	sprintf(
-        // 		esc_html__( '%s Tags:', 'the-events-calendar' ),
-        // 		tribe_get_event_label_singular()
-        // 	),
-        // 	', ',
-        // 	true
-        // );
-        /* Tag icons */
-        require_once get_stylesheet_directory() . '/mvoc-events.php';
-        $icons = mvoc_event_tag_icons($event_id, 'left');
-        if ($icons) {
-            echo '<dt class="tribe-event-tags-label">Tags:</dt>';
-            echo '<dd class="tribe-event-tags event-icon">' . $icons . '</dd>';
-        }
-        ?>
-
-        <?php
-        $bofid = get_post_meta($event_id, MVOC_BOF_ID_KEY, true);
-        if ($bofid) {
-            //echo '<dt class="tribe-events-event-cost-label">BOF Event ID:</dt>';
-            //echo '<dd class="tribe-events-event-cost"><a href="' . bof_url($bofid) . '">' . $bofid . '</a></dd>';
-            echo '<dt class="tribe-events-event-cost-label"></dt>';
-            echo '<dd class="tribe-events-event-cost"><a target="_blank" rel="noopener" href="' . bof_url($bofid) . '"><i class="fa-regular fa-compass event-icon" title="Details at BOF"></i>BOF</a></dd>';          
-        }
-
         $streetmapurl = streetmap_url($latitude, $longitude);
         $gmapurl = gmap_url($latitude, $longitude);
         $w3w = get_post_meta($event_id, "_mvoc_w3w", true);
-        
+
+        $map_icons = '';
         if ($streetmapurl || $gmapurl || $w3w) {
-            //echo '<dt class="tribe-events-event-cost-label">Location:</dt>';
-            echo '<dt class="tribe-events-event-cost-label"></dt>';
-            echo '<dd class="tribe-events-event-cost">';
             if ($streetmapurl) {
-                echo '<a target="_blank" rel="noopener" href="' . $streetmapurl . '"><i class="fa-solid fa-map event-icon" title="StreetMap"></i></a>&nbsp;';
+                $map_icons = $map_icons . '<div class="mvoc-event-tag-left"><a target="_blank" rel="noopener" href="' . $streetmapurl . '"><i class="fa-solid fa-map event-icon" title="StreetMap"></i></a></div>';
             }
 
             if ($gmapurl) {
-                echo '<a target="_blank" rel="noopener" href="' . $gmapurl . '"><i class="fa-solid fa-map-location-dot event-icon" title="Google Maps"></i></a>&nbsp;';
+                // already as a special tag now
+                //$map_icons = $map_icons . '<div class="mvoc-event-tag-left"><a target="_blank" rel="noopener" href="' . $gmapurl . '"><i class="fa-solid fa-map-location-dot event-icon" title="Google Maps"></i></a></div>';
             }
 
             if ($w3w) {
-                echo '<a target="_blank" rel="noopener" href="' . w3w_url($w3w) . '"><i class="fa-solid fa-map-pin event-icon" title="What3Words"></i></a>&nbsp;';
+                $map_icons = $map_icons . '<div class="mvoc-event-tag-left"><a target="_blank" rel="noopener" href="' . w3w_url($w3w) . '"><i class="fa-solid fa-map-pin event-icon" title="What3Words"></i></a></div>';
             }
+        }
+
+        $bof_icon = '';
+        $bofid = get_post_meta($event_id, MVOC_BOF_ID_KEY, true);
+        if ($bofid) {
+            $event_cats_args = array(
+                'orderby' => 'name',
+                'order' => 'ASC',
+                'fields' => 'all'
+                );
+            $event_categories = wp_get_object_terms( $event_id, array( 'tribe_events_cat' ), $event_cats_args );
+            $bof_icon = '<div class="mvoc-event-tag-left"><a target="_blank" rel="noopener" href="' . bof_url($bofid, $event_categories) . '"><i class="fa-regular fa-compass event-icon" title="Details at BOF"></i></a></div>';
+        }
+
+
+        /* Tag icons */
+        require_once get_stylesheet_directory() . '/mvoc-events.php';
+        $icons = mvoc_event_tag_icons($event_id, 'left');
+        $div_class = '';
+        if ($icons) {
+            echo '<dt class="tribe-event-tags-label"></dt>';
+            echo '<dd class="tribe-event-tags event-icon">';
+            echo $icons;
+            echo $map_icons;  
+            echo $bof_icon;  
             echo '</dd>';
         }
 
