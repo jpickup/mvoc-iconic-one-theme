@@ -34,9 +34,20 @@ $event_date_attr = $event->dates->start->format( Dates::DBDATEFORMAT );
 			$tribe_ecp = Tribe__Events__Main::instance();
 			$categories = get_the_terms( $event->ID, $tribe_ecp->get_event_taxonomy());
 			if ($categories) {
+				echo '<b>';
+				$prev = false;
 				foreach($categories as $category) {
-					echo '<b>' . ($category->name) . '</b>';
+					if ($prev) {
+						echo ', ';
+					}
+					if ($category->description) {
+						echo '<a class="tribe-common-anchor-thin" href="' . $category->description . '" target="_blank" rel="noopener">' . ($category->name) . '</a>';
+					} else {
+						echo ($category->name);
+					}
+					$prev = true;
 				}
+				echo '</b>';
 			}
 
 			$distance = get_post_meta( $event->ID, "_mvoc_distance", true);
