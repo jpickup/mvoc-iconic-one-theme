@@ -272,6 +272,13 @@ $website_title = tribe_events_get_event_website_title();
         $streetmapurl = streetmap_url($latitude, $longitude);
         $gmapurl = gmap_url($latitude, $longitude);
         $w3w = get_post_meta($event_id, "_mvoc_w3w", true);
+        $w3wurl = null;
+        if (empty($w3w)) {
+            $w3wurl = w3w_lat_lon_url($latitude, $longitude);
+        } 
+        else {
+            $w3wurl = w3w_url($w3w);
+        }
 
         $map_icons = '';
         if ($streetmapurl || $gmapurl || $w3w) {
@@ -279,13 +286,8 @@ $website_title = tribe_events_get_event_website_title();
                 $map_icons = $map_icons . '<div class="mvoc-event-tag-left"><a target="_blank" rel="noopener" href="' . $streetmapurl . '"><i class="fa-solid fa-map event-icon" title="StreetMap"></i></a></div>';
             }
 
-            if ($gmapurl) {
-                // already as a special tag now
-                //$map_icons = $map_icons . '<div class="mvoc-event-tag-left"><a target="_blank" rel="noopener" href="' . $gmapurl . '"><i class="fa-solid fa-map-location-dot event-icon" title="Google Maps"></i></a></div>';
-            }
-
-            if ($w3w) {
-                $map_icons = $map_icons . '<div class="mvoc-event-tag-left"><a target="_blank" rel="noopener" href="' . w3w_url($w3w) . '"><i class="fa-solid fa-map-pin event-icon" title="What3Words"></i></a></div>';
+            if ($w3wurl) {
+                $map_icons = $map_icons . '<div class="mvoc-event-tag-left"><a target="_blank" rel="noopener" href="' . $w3wurl . '"><i class="fa-solid fa-map-pin event-icon" title="What3Words"></i></a></div>';
             }
         }
 
@@ -298,7 +300,7 @@ $website_title = tribe_events_get_event_website_title();
                 'fields' => 'all'
                 );
             $event_categories = wp_get_object_terms( $event_id, array( 'tribe_events_cat' ), $event_cats_args );
-            $bof_icon = '<div class="mvoc-event-tag-left"><a target="_blank" rel="noopener" href="' . bof_url($bofid, $event_categories) . '"><i class="fa-regular fa-compass event-icon" title="Details at BOF"></i></a></div>';
+            $bof_icon = '<div class="mvoc-event-tag-left"><a target="_blank" rel="noopener" href="' . bof_url($bofid, $event_categories) . '"><i class="fa-regular fa-compass event-icon" title="Details at BOF" style="color: #D00915;"></i></a></div>';
         }
 
 
@@ -309,9 +311,9 @@ $website_title = tribe_events_get_event_website_title();
         if ($icons) {
             echo '<dt class="tribe-event-tags-label"></dt>';
             echo '<dd class="tribe-event-tags event-icon">';
+            echo $bof_icon;  
             echo $icons;
             echo $map_icons;  
-            echo $bof_icon;  
             echo '</dd>';
         }
         ?>

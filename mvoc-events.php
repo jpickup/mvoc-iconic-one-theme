@@ -78,8 +78,8 @@ function mvoc_event_tag_icons($event_id, $align='right') {
     $longitude = get_post_meta($event_id, MVOC_LONGITUDE_KEY, true);
     $gmapurl = gmap_url($latitude, $longitude);
     if ($gmapurl) {
-        if ($gmapurl) {
-            $inner_text = '<a target="_blank" rel="noopener" href="' . $gmapurl . '"><i class="fa-solid fa-map-location-dot event-icon" style="color: #0080f0;"></i></a>&nbsp;';
+        if ($gmapurl) { 
+            $inner_text = '<a target="_blank" rel="noopener" href="' . $gmapurl . '"><i class="fa-solid fa-map-location-dot event-icon" style="color: #25A2E4;"></i></a>&nbsp;';
             $hint_text = 'Google Map';
             $result = $result . '<div class="'. $div_class. '" title="' . $hint_text .'">' . $inner_text . '</div>'; 
         }
@@ -133,9 +133,22 @@ function bof_url($bof_id, $categories) {
 }
 
 function w3w_url($w3w) {
-    return 'https://w3w.co/' . $w3w;
+    if ($w3w) {
+        return 'https://w3w.co/' . $w3w;
+    } 
+    else {
+        return null;
+    }
 }
 
+function w3w_lat_lon_url($latitude, $longitude) {
+    if (is_numeric($latitude) && is_numeric($longitude)) {
+        return 'https://w3w.co/' . $latitude .','. $longitude;
+    }
+    else {
+        return null;
+    }
+}
 
 // Earth radius in metres for haversine calculation  
 const DMMEANRADIUS = 6371000.0;
