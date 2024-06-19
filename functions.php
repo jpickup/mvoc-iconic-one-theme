@@ -13,3 +13,11 @@ function mvoc_child_wp_head(){
     <script src="https://kit.fontawesome.com/47b25671dd.js" crossorigin="anonymous"></script>
     <?php //Open PHP tags
 }
+
+function mvoc_pre_get_posts( $query ) {
+    // Modify the main query on the blog posts index page to only include those tagged as news
+    if ( is_home() && $query->is_main_query() ) {
+        $query->set( 'category_name', 'news' );
+    }
+}
+add_action( 'pre_get_posts', 'mvoc_pre_get_posts' );
