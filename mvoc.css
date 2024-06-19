@@ -37,6 +37,13 @@ div.mvoc-event-category {
     padding:1px;
 }
 
+/* Bring the mobile rendering of the menu to the front */
+@media screen and (max-width: 767px) {
+    .themonic-nav ul {
+        z-index: 99;
+    }
+}
+
 /* Increase size of the event tags */
 .event-icon {
     font-size: large;
