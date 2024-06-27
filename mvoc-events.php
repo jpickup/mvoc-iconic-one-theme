@@ -84,14 +84,34 @@ function mvoc_event_tag_icons($event_id, $align='right') {
 
     $latitude = get_post_meta($event_id, MVOC_LATITUDE_KEY, true);
     $longitude = get_post_meta($event_id, MVOC_LONGITUDE_KEY, true);
+    $w3w = get_post_meta($event_id, "_mvoc_w3w", true);
+    $w3wurl = null;
+    if (empty($w3w)) {
+        $w3wurl = w3w_lat_lon_url($latitude, $longitude);
+    } 
+    else {
+        $w3wurl = w3w_url($w3w);
+    }
+    if ($w3wurl) {
+        $inner_text = '<a target="_blank" rel="noopener" href="' . $w3wurl . '"><i class="fa-solid fa-map-pin event-icon" style="color: #25A2E4;"></i></a>&nbsp;';
+        $hint_text = 'W3W';
+        $result = $result . '<div class="'. $div_class. '" title="' . $hint_text .'">' . $inner_text . '</div>'; 
+    }
+
+    $streetmapurl = streetmap_url($latitude, $longitude);
+    if ($streetmapurl) {
+        $inner_text = '<a target="_blank" rel="noopener" href="' . $streetmapurl . '"><i class="fa-solid fa-map event-icon" style="color: #25A2E4;"></i></a>&nbsp;';
+        $hint_text = 'StreetMap';
+        $result = $result . '<div class="'. $div_class. '" title="' . $hint_text .'">' . $inner_text . '</div>'; 
+    }
+
     $gmapurl = gmap_url($latitude, $longitude);
     if ($gmapurl) {
-        if ($gmapurl) { 
-            $inner_text = '<a target="_blank" rel="noopener" href="' . $gmapurl . '"><i class="fa-solid fa-map-location-dot event-icon" style="color: #25A2E4;"></i></a>&nbsp;';
-            $hint_text = 'Google Map';
-            $result = $result . '<div class="'. $div_class. '" title="' . $hint_text .'">' . $inner_text . '</div>'; 
-        }
+        $inner_text = '<a target="_blank" rel="noopener" href="' . $gmapurl . '"><i class="fa-solid fa-map-location-dot event-icon" style="color: #25A2E4;"></i></a>&nbsp;';
+        $hint_text = 'Google Map';
+        $result = $result . '<div class="'. $div_class. '" title="' . $hint_text .'">' . $inner_text . '</div>'; 
     }
+
     return $result;    
 }
 
