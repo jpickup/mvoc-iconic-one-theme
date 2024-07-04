@@ -280,17 +280,6 @@ $website_title = tribe_events_get_event_website_title();
             $w3wurl = w3w_url($w3w);
         }
 
-        $map_icons = '';
-        if ($streetmapurl || $gmapurl || $w3w) {
-            if ($streetmapurl) {
-                $map_icons = $map_icons . '<div class="mvoc-event-tag-left"><a target="_blank" rel="noopener" href="' . $streetmapurl . '"><i class="fa-solid fa-map event-icon" title="StreetMap"></i></a></div>';
-            }
-
-            if ($w3wurl) {
-                $map_icons = $map_icons . '<div class="mvoc-event-tag-left"><a target="_blank" rel="noopener" href="' . $w3wurl . '"><i class="fa-solid fa-map-pin event-icon" title="What3Words"></i></a></div>';
-            }
-        }
-
         $bof_icon = '';
         $bofid = get_post_meta($event_id, MVOC_BOF_ID_KEY, true);
         if ($bofid) {
@@ -313,7 +302,6 @@ $website_title = tribe_events_get_event_website_title();
             echo '<dd class="tribe-event-tags event-icon">';
             echo $bof_icon;  
             echo $icons;
-            echo $map_icons;  
             echo '</dd>';
         }
         ?>
