@@ -73,6 +73,10 @@ function mvoc_event_tag_icons($event_id, $align='right') {
                     $inner_text = '<i class="fa-solid fa-circle-xmark" style="color: #ff0000;"></i>';
                     $hint_text = 'Event cancelled';
                     break;
+                case 'streeto': 
+                    $inner_text = '<i class="fa-solid fa-road" style="color: #606060;"></i>';
+                    $hint_text = 'Street Orienteering';
+                    break;                
                 default:
                     $inner_text = $tag->name;
                     $hint_text = '';
