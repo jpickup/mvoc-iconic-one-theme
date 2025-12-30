@@ -105,3 +105,7 @@ h2.tribe-widget {
 .even td {
     background-color: rgb(240, 240, 240)
 }
+
+.mvoc-full-width-page {
+    width: 96%;
+}

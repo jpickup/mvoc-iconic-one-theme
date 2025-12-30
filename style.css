@@ -19,4 +19,18 @@ https://developer.wordpress.org/themes/advanced-topics/child-themes/
 .below-title-meta { 
     width: 100%;
     margin-left: 0%;
-  }
+}
+
+.themonic-logo {
+    padding: 0px;
+	float:left;
+	margin:10px 0;
+}
+
+
+@media screen and (max-width: 600px) {
+    .themonic-logo {
+        padding: 0px;
+        margin: 0;
+    }
+}
