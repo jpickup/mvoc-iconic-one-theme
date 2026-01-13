@@ -269,7 +269,7 @@ $website_title = tribe_events_get_event_website_title();
         ?>
 
         <?php
-        $streetmapurl = streetmap_url($latitude, $longitude);
+        $sysmapsurl = sysmaps_url($latitude, $longitude);
         $gmapurl = gmap_url($latitude, $longitude);
         $w3w = get_post_meta($event_id, "_mvoc_w3w", true);
         $w3wurl = null;

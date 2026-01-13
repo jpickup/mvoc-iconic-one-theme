@@ -102,9 +102,9 @@ function mvoc_event_tag_icons($event_id, $align='right') {
         $result = $result . '<div class="'. $div_class. '" title="' . $hint_text .'">' . $inner_text . '</div>'; 
     }
 
-    $streetmapurl = streetmap_url($latitude, $longitude);
-    if ($streetmapurl) {
-        $inner_text = '<a target="_blank" rel="noopener" href="' . $streetmapurl . '"><i class="fa-solid fa-map event-icon" style="color: #25A2E4;"></i></a>&nbsp;';
+    $sysmapsurl = sysmaps_url($latitude, $longitude);
+    if ($sysmapsurl) {
+        $inner_text = '<a target="_blank" rel="noopener" href="' . $sysmapsurl . '"><i class="fa-solid fa-map event-icon" style="color: #25A2E4;"></i></a>&nbsp;';
         $hint_text = 'StreetMap';
         $result = $result . '<div class="'. $div_class. '" title="' . $hint_text .'">' . $inner_text . '</div>'; 
     }
@@ -144,14 +144,22 @@ function gmap_url($latitude, $longitude) {
     }
 }
 
-function streetmap_url($latitude, $longitude) {
-    // example https://streetmap.co.uk/loc/56.1782,-4.3850
-    if (is_in_uk($latitude, $longitude)) {
-        return 'https://streetmap.co.uk/loc/' . $latitude .','. $longitude;
+function sysmaps_url($latitude, $longitude) {
+    // no longer works/exists, replace with sysmaps.co.uk
+    // e.g. https://www.sysmaps.co.uk/sysmaps_lf.html?!51.0971~-0.22253
+    if (is_numeric($latitude) && is_numeric($longitude)) {
+      return 'https://www.sysmaps.co.uk/sysmaps_lf.html?!' . $latitude . '~' . $longitude;
     }
     else {
         return null;
     }
+    // example https://streetmap.co.uk/loc/56.1782,-4.3850
+    // if (is_in_uk($latitude, $longitude)) {
+    //     return 'https://streetmap.co.uk/loc/' . $latitude .','. $longitude;
+    // }
+    // else {
+    //     return null;
+    // }
 }
 
 function bof_url($bof_id, $categories) {
